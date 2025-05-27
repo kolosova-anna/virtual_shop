@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import List
 
 @ dataclass
 class Item():
@@ -29,14 +28,21 @@ class Shop():
         }
         self.last_id: int = max(self.items.keys())
 
-    def check_name_prod(self, name):
+    def check_name_prod(self, name) -> str:
+        # проверка наличия товара с полученным названием
         for item in self.items:
             if Item.name_prod != name:
                return name
             else:
                 return None
             
-    def check_amount(self, name)
+    def check_amount(self, id_prod) -> int:
+        # проверка наличия нужного количества товра
+        for k, v in self.items:
+            if k == id_prod:
+               return Item.amount
+            else:
+                return None
 
     def add_item(self, name: str, price: float, amount: int) -> None:
         self.last_id += 1
