@@ -35,8 +35,7 @@ class ShopController():
             choice = self.get_number()
             match choice:
                 case '1':
-                    task = self.get_task()
-                    view.pass_task(task)
+                    view.show_goods()
                 case '2':
                     view.show_tasks()
                 case '3':
@@ -53,8 +52,6 @@ class ShopController():
                 case '7':
                     task_id = view.pass_check_task_id()
                     view.pass_delete_task(task_id)
-                case '8':
-                    view.pass_delete_completed_tasks()
                 case '0':
                     break
                 case _:
