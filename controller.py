@@ -41,7 +41,8 @@ class ShopController():
                     name = input("Введите наиметование товара ")
                     view.pass_add_item(name)
                 case '3':
-                    view.show_tasks(False)
+                    id_prod = view.get_id()
+                    view.pass_change_amount(id_prod)
                 case '4':
                     view.show_tasks(True)
                 case '5':

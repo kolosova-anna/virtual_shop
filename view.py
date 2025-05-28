@@ -17,6 +17,7 @@ class ShopView():
                 print("Ошибка. Введите целое число ")
 
     def get_price(self) -> float:
+        # Запрос стоимости товара
         while True:
             try:
                 price = float(input("Введите стоимость: "))
@@ -41,6 +42,7 @@ class ShopView():
         print(tl.tabulate(goods, headers=headers, tablefmt="grid"))
 
     def pass_add_item(self, name: str) -> None:
+        # получение и передача данных для добавления нового товара в базу
         name_check = self.shop.check_name_prod(name)
         if name_check is False:
             price = self.get_price()
@@ -51,3 +53,25 @@ class ShopView():
         else:
             print(f"В базе уже есть товар с введенным наименованием.")
             print("Хотите внести информацию о поступлении?")
+
+    def get_id(self) -> int:
+        # запрос id товара у пользователя
+        while True:
+            try:
+                print("Введите id товара")
+                id_prod = self.check_input()
+                check_id = self.shop.check_id(id_prod)
+                if check_id is True:
+                    return id_prod
+                print(f"Ошибка. Товар с id {id_prod} не найден")
+                self.show_goods()
+            except ValueError:
+                print("ошибка ввода")
+                
+
+    def pass_change_amount(self, id_prod: int) -> None:
+        # запрос и изменение количества товара в базе
+        new_amount = self.get_amount()
+        self.shop.change_amount(id_prod, new_amount)
+        print("Количество товара изменено")
+        self.show_goods()
