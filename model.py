@@ -57,3 +57,10 @@ class Shop():
             goods_list.append(items)
         return goods_list
     
+    def check_name_prod(self, name: str) -> str:
+        for k, v in self.goods.items():
+            if name == v.name_prod:
+                return None
+            else:
+                return name
+    

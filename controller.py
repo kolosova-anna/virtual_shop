@@ -16,7 +16,8 @@ class ShopController():
     def get_item(self) -> str: 
         # запрашиваем наименование нового товара у пользователя для добавления в список
         return input("Введите название товара:\n")
-    
+
+
     def run(self) -> None:
     # выводит меню пользователю и вызывает соответствующие функции классов TodoList, TodoView и TodoController
         shop = Shop()
@@ -37,7 +38,8 @@ class ShopController():
                 case '1':
                     view.show_goods()
                 case '2':
-                    view.show_tasks()
+                    name = input("Введите наиметование товара ")
+                    view.pass_add_item(name)
                 case '3':
                     view.show_tasks(False)
                 case '4':
