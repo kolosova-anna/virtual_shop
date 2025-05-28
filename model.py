@@ -37,6 +37,7 @@ class Shop():
                 return None
 
     def add_item(self, name: str, price: float, amount: int) -> None:
+        # добавление нового товара
         self.last_id += 1
         new_item = Item(name, price, amount)
         self.goods[self.last_id] = new_item
@@ -50,8 +51,22 @@ class Shop():
         return goods_list
     
     def check_name_prod(self, name: str) -> bool:
+        # проверка на присутствие наименования товара в база
         for value in self.goods.values():
             if name == value.name_prod:
                 return True
         return False
     
+    def check_id(self, id_prod: int) -> bool:
+        # проверка наличия id в базе
+        for k in self.goods.keys():
+            if id_prod == k:
+                return True
+        return False
+
+    def change_amount(self, id_prod: int, amount: int) -> None:
+        # изменение количества товара
+        for k, v in self.goods.items():
+            if id_prod == k:
+                v.amount = amount
+                return

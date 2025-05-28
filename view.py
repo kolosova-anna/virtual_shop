@@ -14,7 +14,7 @@ class ShopView():
                 number = int(input())
                 return number
             except ValueError:
-                print("Ошибка. Введите число ")
+                print("Ошибка. Введите целое число ")
 
     def get_price(self) -> float:
         while True:
