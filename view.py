@@ -41,11 +41,11 @@ class ShopView():
         print(tl.tabulate(goods, headers=headers, tablefmt="grid"))
 
     def pass_add_item(self, name: str) -> None:
-        name_prod = self.shop.check_name_prod(name)
-        if name is not None:
+        name_check = self.shop.check_name_prod(name)
+        if name_check is False:
             price = self.get_price()
             amount = self.get_amount()
-            self.shop.add_item(name_prod, price, amount)
+            self.shop.add_item(name, price, amount)
             print("Товар добавлен")
             return
         else:

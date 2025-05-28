@@ -27,14 +27,6 @@ class Shop():
             12: Item("альстромерия", 140, 250)
         }
         self.last_id: int = max(self.goods.keys())
-
-    def check_name_prod(self, name) -> str:
-        # проверка наличия товара с полученным названием
-        for item in self.goods:
-            if Item.name_prod != name:
-               return name
-            else:
-                return None
             
     def check_amount(self, id_prod) -> int:
         # проверка наличия нужного количества товра
@@ -57,10 +49,9 @@ class Shop():
             goods_list.append(items)
         return goods_list
     
-    def check_name_prod(self, name: str) -> str:
-        for k, v in self.goods.items():
-            if name == v.name_prod:
-                return None
-            else:
-                return name
+    def check_name_prod(self, name: str) -> bool:
+        for value in self.goods.values():
+            if name == value.name_prod:
+                return True
+        return False
     
