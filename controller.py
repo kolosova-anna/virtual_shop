@@ -42,9 +42,10 @@ class ShopController():
                     view.pass_add_item(name)
                 case '3':
                     id_prod = view.get_id()
-                    view.pass_change_amount(id_prod)
+                    view.pass_add_receipt(id_prod)
                 case '4':
-                    view.show_tasks(True)
+                    id_prod = view.get_id()
+                    view.pass_change_price(id_prod)
                 case '5':
                     task_id = view.pass_check_task_id()
                     view.pass_change_task_status(task_id)

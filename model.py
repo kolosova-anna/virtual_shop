@@ -64,9 +64,16 @@ class Shop():
                 return True
         return False
 
-    def change_amount(self, id_prod: int, amount: int) -> None:
-        # изменение количества товара
+    def add_receipt(self, id_prod: int, amount: int) -> None:
+        # добавление поступившего товара
         for k, v in self.goods.items():
             if id_prod == k:
-                v.amount = amount
+                v.amount += amount
+                return
+            
+    def change_price(self, id_prod: int, price: float) -> None:
+        # изменение стоимости товара
+        for k, v in self.goods.items():
+            if id_prod == k:
+                v.price = price
                 return

@@ -69,9 +69,16 @@ class ShopView():
                 print("ошибка ввода")
                 
 
-    def pass_change_amount(self, id_prod: int) -> None:
-        # запрос и изменение количества товара в базе
+    def pass_add_receipt(self, id_prod: int) -> None:
+        # запрос и изменение количества товара
         new_amount = self.get_amount()
-        self.shop.change_amount(id_prod, new_amount)
+        self.shop.add_receipt(id_prod, new_amount)
         print("Количество товара изменено")
+        self.show_goods()
+
+    def pass_change_price(self, id_prod: int) -> None:
+        # заспрос и изменение стоимости товара
+        new_price = self.get_price()
+        self.shop.change_price(id_prod, new_price)
+        print("Стоимость товара изменена")
         self.show_goods()
