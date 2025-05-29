@@ -50,12 +50,11 @@ class ShopController():
                     id_prod = view.get_id()
                     view.pass_delete_item(id_prod)
                 case '6':
-                    task_id = view.pass_check_task_id()
-                    text = self.get_task()
-                    view.pass_edit_task_text(task_id, text)
+                    id_prod = view.get_id()
+                    amount = view.get_amount()
+                    view.complete_sale(id_prod, amount)
                 case '7':
-                    task_id = view.pass_check_task_id()
-                    view.pass_delete_task(task_id)
+                    view.show_report()
                 case '0':
                     break
                 case _:

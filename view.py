@@ -88,3 +88,35 @@ class ShopView():
         self.shop.delete_item(id_prod)
         print(f"Товар с id {id_prod} удален из базы")
         self.show_goods()
+
+    def check_amount(self, id_prod: int, amount: int) -> bool:
+        # получение ответа о наличии достаточного количества товара для продажи
+        quantity = self.shop.get_amount(id_prod)
+        if quantity >= amount:
+            return True
+        else:
+            return False
+
+    def complete_sale(self, id_prod: int, amount: int) -> list:
+        # оформление продажи
+        check_amount = self.check_amount(id_prod, amount)
+        if check_amount is True:
+            check: list = self.shop.new_sale(id_prod, amount)
+            headers = ["id", "наименование", "цена", "количество", "стоимость"]
+            print("Чек о продаже сформирован:")
+            print(tl.tabulate(check, headers=headers, tablefmt="grid"))
+        else:
+            quantity = self.shop.get_amount(id_prod)
+            print(f"Недостаточно товара для продажи. В наличии есть {quantity} шт.")
+
+    def show_report(self) -> None:
+        # вывод отчета о продажах
+        report: list = self.shop.sale_report()
+        if not report:
+            print("Ни одной продажи не найдено")
+            return
+        print("Отчкт о продажах:")
+        headers = ["id", "наименование", "цена", "количество", "сумма"]
+        print(tl.tabulate(report, headers=headers, tablefmt="grid"))
+        total_sum = self.shop.get_total_sum()
+        print(f"Сумма всех продаж составила {total_sum:,.2f}")

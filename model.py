@@ -8,7 +8,8 @@ class Item():
     amount: int
 
 class Shop():
-    # Хранит информацию о товарах, позволяет добавить новый товар, получить информацию о товарах, внести изменения 
+    # Хранит информацию о товарах, позволяет добавить новый товар, получить информацию о товарах, внести изменения,
+    # сформировать отчет о продажах
     def __init__(self):
         # ининциализируем базу с информацией о товарах
         self.goods: dict[int, Item] = {
@@ -27,14 +28,8 @@ class Shop():
             12: Item("альстромерия", 140, 250)
         }
         self.last_id: int = max(self.goods.keys())
-            
-    def check_amount(self, id_prod) -> int:
-        # проверка наличия нужного количества товра
-        for k, v in self.goods:
-            if k == id_prod:
-               return Item.amount
-            else:
-                return None
+        self.report: list = []
+        self.total_sum: float = 0  
 
     def add_item(self, name: str, price: float, amount: int) -> None:
         # добавление нового товара
@@ -82,3 +77,30 @@ class Shop():
         # удаление товара
         if id_prod in self.goods.keys():
             del self.goods[id_prod]
+
+    def get_amount(self, id_prod: int) -> int:
+        for k, v in self.goods.items():
+            if k == id_prod:
+               return v.amount
+
+    def new_sale(self, id_prod: int, amount: int) -> list:
+        # формирование чека о продаже
+        check: list = []
+        for k, v in self.goods.items():
+            if id_prod == k:
+                price_check: float = round(v.price * amount, 2)
+                print(price_check)
+                items: list = [k, v.name_prod, v.price, amount, price_check]
+        check.append(items)
+        items_rep: list = [k, v.name_prod, v.price, amount, price_check]
+        self.report.append(items_rep)
+        self.total_sum +=price_check
+        return check
+    
+    def sale_report(self) -> list:
+        # формирование отчета о продажах
+        return self.report
+    
+    def get_total_sum(self) -> float:
+        # получение суммы всех продаж
+        return self.total_sum
