@@ -38,7 +38,7 @@ class ShopView():
             print("Товары в магазине отсутствуют")
             return
         print("Информация о товарах в магазине:")
-        headers = ["id", "наименование", "цена", "количество"]
+        headers = ["id", "наименование", "цена, руб.", "количество, шт."]
         print(tl.tabulate(goods, headers=headers, tablefmt="grid"))
 
     def pass_add_item(self, name: str) -> None:
@@ -119,4 +119,4 @@ class ShopView():
         headers = ["id", "наименование", "цена", "количество", "сумма"]
         print(tl.tabulate(report, headers=headers, tablefmt="grid"))
         total_sum = self.shop.get_total_sum()
-        print(f"Сумма всех продаж составила {total_sum:,.2f}")
+        print(f"Сумма всех продаж составила {total_sum:,.2f} руб.")

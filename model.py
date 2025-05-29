@@ -41,7 +41,7 @@ class Shop():
         # получение списка с информацией о товарах для дальнейшей передачи во view
         goods_list: list[dict] = []
         for k, v in self.goods.items():
-            items: list = [k, v.name_prod, v.price, v.amount]
+            items: list = [k, v.name_prod, f"{v.price:,.2f}", v.amount]
             goods_list.append(items)
         return goods_list
     
@@ -90,9 +90,9 @@ class Shop():
             if id_prod == k:
                 price_check: float = round(v.price * amount, 2)
                 print(price_check)
-                items: list = [k, v.name_prod, v.price, amount, price_check]
+                items: list = [k, v.name_prod, v.price, amount, f"{price_check:,.2f}"]
         check.append(items)
-        items_rep: list = [k, v.name_prod, v.price, amount, price_check]
+        items_rep: list = [k, v.name_prod, v.price, amount, f"{price_check:,.2f}"]
         self.report.append(items_rep)
         self.total_sum +=price_check
         return check
