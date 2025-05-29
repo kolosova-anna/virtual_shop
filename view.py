@@ -82,3 +82,9 @@ class ShopView():
         self.shop.change_price(id_prod, new_price)
         print("Стоимость товара изменена")
         self.show_goods()
+
+    def pass_delete_item(self, id_prod: int) -> None:
+        # удаление товара из базы
+        self.shop.delete_item(id_prod)
+        print(f"Товар с id {id_prod} удален из базы")
+        self.show_goods()

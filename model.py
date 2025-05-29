@@ -77,3 +77,8 @@ class Shop():
             if id_prod == k:
                 v.price = price
                 return
+            
+    def delete_item(self, id_prod: int) -> None:
+        # удаление товара
+        if id_prod in self.goods.keys():
+            del self.goods[id_prod]

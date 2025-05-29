@@ -47,8 +47,8 @@ class ShopController():
                     id_prod = view.get_id()
                     view.pass_change_price(id_prod)
                 case '5':
-                    task_id = view.pass_check_task_id()
-                    view.pass_change_task_status(task_id)
+                    id_prod = view.get_id()
+                    view.pass_delete_item(id_prod)
                 case '6':
                     task_id = view.pass_check_task_id()
                     text = self.get_task()
